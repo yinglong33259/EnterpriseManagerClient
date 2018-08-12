@@ -1,0 +1,11 @@
+{
+  "UserTable":[
+    {"headerName": "Name",  "field": "name" },
+    {"headerName": "Age",   "field": "age" },
+    {"headerName": "Sex",   "field": "sex" },
+    {"headerName": "Tel",   "field": "tel" },
+    {"headerName": "Email", "field": "email" },
+    {"headerName": "Addr",  "field": "addr" }
+  ]
+
+}

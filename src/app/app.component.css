@@ -1,0 +1,28 @@
+.topBar{
+  width: 100%;
+  height: 10%;
+  background: #2B4f3F;
+}
+.means{
+  width: 20%;
+  height: 90%;
+  color:white;
+  position: absolute;
+  background: #4F867D;
+}
+.means a{
+  color:white;
+}
+.content{
+  left: 20%;
+  width: 80%;
+  height: 90%;
+  background: #f0f0f0;
+  position: absolute;
+}
+.showComponent{
+  display: block;
+}
+.hideComponent{
+  display: none;
+}

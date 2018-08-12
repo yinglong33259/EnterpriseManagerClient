@@ -1,0 +1,8 @@
+.query-form{
+  width: 100%;
+  height: 100px;
+  background: white;
+}
+.query-form .query-item{
+  margin-left: 5px;
+}

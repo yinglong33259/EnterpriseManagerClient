@@ -1,0 +1,11 @@
+<ul class="means">
+  <li  *ngFor="let mean of means">
+    <a class="topMean" (click)="clickTopMean()">{{mean.title}}</a>
+    <ul class="subMean">
+      <li *ngFor="let subMean of mean.submenus ">
+        <a routerLink="/{{subMean.href}}"
+           (click)="add2window(subMean)" >{{subMean.title}}</a>
+      </li>
+    </ul>
+  </li>
+</ul>

@@ -1,0 +1,56 @@
+<!--<label>name:-->
+  <!--<input [(ngModel)]="user.name" placeholder="name">-->
+<!--</label>-->
+<!--<div><span>name: </span>{{user.name}}</div>-->
+<!--<div><span>age: </span>{{user.age}}</div>-->
+<!--<div class="{{this.meanService.currWindow == 'users' ? 'showComponent':'hideComponent'}}">-->
+  <!--<h2>My Users</h2>-->
+  <!--<ul >-->
+    <!--<li *ngFor="let user of users" (click)="onSelect(user)">-->
+      <!--<input [(ngModel)]="user.name" placeholder="name"/>-->
+      <!--<app-user-detail [user]="user"></app-user-detail>-->
+    <!--</li>-->
+  <!--</ul>-->
+<!--</div>-->
+<form class="query-form">
+  <mat-form-field class="query-item">
+    <input matInput placeholder="Name" [formControl]="emailFormControl">
+  </mat-form-field>
+  <mat-form-field class="query-item">
+    <input matInput placeholder="Sex" [formControl]="emailFormControl">
+  </mat-form-field>
+  <mat-form-field class="query-item">
+    <input matInput placeholder="Addr" [formControl]="emailFormControl">
+  </mat-form-field>
+  <button mat-button (click)="open(content)">Open dialog</button>
+</form>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button">
+              <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+  </div>
+</ng-template>
+
+
+<app-cus-table [rowData]="users" [tableName]="'UserTable'" [totalRowCount]="totalRowCount"></app-cus-table>

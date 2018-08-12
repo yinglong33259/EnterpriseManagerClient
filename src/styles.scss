@@ -1,0 +1,22 @@
+@import "assets/scss/ag-grid-custrom-theme.scss";
+@import "~ag-grid/src/styles/ag-grid.scss";
+@import "~ag-grid/src/styles/ag-theme-balham.scss";
+html{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+h1,h2,h3,h4,h5,h6,p{
+  margin: 0;
+  padding: 0;
+}
+a{
+  text-underline: none;
+}
+
+a,button,input,div,li { outline: none; }

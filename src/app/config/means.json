@@ -1,0 +1,45 @@
+{
+  "means":[
+    {
+      "title": "用户管理",
+      "enTitle": "User Mgmt",
+      "titleShort": "User Mgmt",
+      "ngShow": "menu.home",
+      "submenus": [
+        {
+          "title": "用户管理",
+          "enTitle": "User Management",
+          "titleShort": "User Management",
+          "href": "users"
+        },
+        {
+          "title": "钱包管理",
+          "enTitle": "Wallet Management",
+          "titleShort": "Wallet Management",
+          "href": "wallet"
+        }
+      ]
+    },
+    {
+      "title": "表单样式",
+      "enTitle": "Table Style",
+      "titleShort": "Table Style",
+      "ngShow": "menu.home",
+      "submenus": [
+        {
+          "title": "后台分页",
+          "enTitle": "Server Pagenation",
+          "titleShort": "Server Pagenation",
+          "href": "serverPagenation"
+        },
+        {
+          "title": "前台分页",
+          "enTitle": "Client Pagenation",
+          "titleShort": "Client Pagenation",
+          "href": "clientPagenation"
+        }
+      ]
+    }
+  ]
+
+}

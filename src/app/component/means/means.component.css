@@ -1,0 +1,15 @@
+.means li{
+  list-style-type: none;
+}
+.means ul a{
+  color: antiquewhite;
+  text-underline: none;
+}
+.topMean{
+  display: block;
+  cursor: pointer;
+}
+.subMean{
+  display: block;
+  cursor: pointer;
+}

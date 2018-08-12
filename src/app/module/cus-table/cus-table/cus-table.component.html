@@ -1,0 +1,40 @@
+<div style="width: 100%; overflow: hidden; flex-grow: 1">
+  <ag-grid-angular
+    style="width: 99.5%; height: 400px;"
+    class="ag-theme-balham"
+    [enableColResize]="true"
+    [enableSorting]="true"
+    [enableFilter]="true"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [rowHeight]="35"
+    [headerHeight]="35"
+    [pagination]="true"
+    [paginationPageSize]="pageSize"
+    [suppressPaginationPanel]="true"
+    (gridReady)="onGridReady($event)"
+  >
+
+  </ag-grid-angular>
+  <div style="height: 50px;width: 100%;background: white;">
+    <mat-form-field style="width: 50px">
+      <mat-select [(value)]="pageSize" (valueChange)="pageSizeChange()">
+        <mat-option  value="10">10</mat-option>
+        <mat-option  value="20">20</mat-option>
+        <mat-option  value="50">50</mat-option>
+        <mat-option  value="100">100</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <ngb-pagination style="float: right"
+      [collectionSize]="totalRowCount"
+      [maxSize]="5"
+      [ellipses]="true"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      (pageChange)="gotoPage()"
+      [boundaryLinks]="true">
+
+    </ngb-pagination>
+  </div>
+
+</div>
