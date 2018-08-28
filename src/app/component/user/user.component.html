@@ -12,17 +12,14 @@
     <!--</li>-->
   <!--</ul>-->
 <!--</div>-->
-<form class="query-form">
-  <mat-form-field class="query-item">
-    <input matInput placeholder="Name" [formControl]="emailFormControl">
-  </mat-form-field>
-  <mat-form-field class="query-item">
-    <input matInput placeholder="Sex" [formControl]="emailFormControl">
-  </mat-form-field>
-  <mat-form-field class="query-item">
-    <input matInput placeholder="Addr" [formControl]="emailFormControl">
-  </mat-form-field>
-  <button mat-button (click)="open(content)">Open dialog</button>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input formControlName="email" id="email">
+      <nz-form-explain *ngIf="validateForm.get('email').dirty && validateForm.get('email').errors">The input is not valid E-mail!</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
 </form>
 
 <ng-template #content let-c="close" let-d="dismiss">

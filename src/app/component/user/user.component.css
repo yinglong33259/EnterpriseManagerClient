@@ -6,3 +6,6 @@
 .query-form .query-item{
   margin-left: 5px;
 }
+nz-form{
+  max-width: 100px;
+}

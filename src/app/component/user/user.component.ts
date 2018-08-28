@@ -1,11 +1,9 @@
-///<reference path="../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import {Component, Directive, Inject, OnInit, ViewContainerRef} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {User} from '../../entity/User';
 import {UserService} from '../../service/user.service';
 import {MeanService} from '../../service/mean.service';
-import {MAT_DIALOG_DATA, MatDialog} from '@angular/material';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 export interface DialogData {
@@ -18,23 +16,27 @@ export interface DialogData {
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
+  validateForm: FormGroup;
   users: User[];
   means: string[];
   totalRowCount: number;
   closeResult: string;
 
-  emailFormControl = new FormControl('', [
-  ]);
+  emailFormControl = new FormControl('', []);
 
   constructor(
     private userService: UserService,
     private meanService: MeanService,
-    private modalService: NgbModal
-  ) { }
+    private modalService: NgbModal,
+    private fb: FormBuilder
+  ) {
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getUsers();
+    this.validateForm = this.fb.group({
+      email: [null, [Validators.email]],
+    });
   }
 
   ngOnDestroy() {
@@ -61,6 +63,10 @@ export class UserComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  submitForm() {
+    console.log("submit");
   }
 
   private getDismissReason(reason: any): string {

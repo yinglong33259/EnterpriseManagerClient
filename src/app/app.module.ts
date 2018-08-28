@@ -21,6 +21,11 @@ import { ClientPagenationComponent } from './component/client-pagenation/client-
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CusTableModule} from './module/cus-table/cus-table.module';
 import {MaterialModule} from './module/material/material.module';
+import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { registerLocaleData } from '@angular/common';
+import zh from '@angular/common/locales/zh';
+
+registerLocaleData(zh);
 
 @NgModule({
   declarations: [
@@ -43,9 +48,10 @@ import {MaterialModule} from './module/material/material.module';
     AgGridModule.withComponents([]),
     NgbModule.forRoot(),
     MaterialModule,
-    CusTableModule
+    CusTableModule,
+    NgZorroAntdModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: AppRoutingCache }],
+  providers: [{ provide: RouteReuseStrategy, useClass: AppRoutingCache }, { provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
