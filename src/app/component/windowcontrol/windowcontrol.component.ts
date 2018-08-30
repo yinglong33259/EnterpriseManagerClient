@@ -17,6 +17,15 @@ export class WindowcontrolComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    let curUrl = location.pathname.split("/")[1];
+    if ( this.meanService.getMeanByHref(curUrl) != null ) {
+      this.meanService.windows.push( this.meanService.getMeanByHref(curUrl) );
+      this.meanService.setCurRoute( this.meanService.getMeanByHref(curUrl) );
+    }
+  }
+
+  enterRouter(route: mean): void {
+    this.meanService.setCurRoute( route ) ;
   }
 
   closeWindow(mean: object): void {
@@ -28,8 +37,10 @@ export class WindowcontrolComponent implements OnInit {
         this.meanService.windows.splice(i, 1);
         if ( i === 0 && len > 1 ) {
           this.router.navigate([this.meanService.windows[i].href, {  }]);
+          this.meanService.setCurRoute( this.meanService.windows[i] );
         } else if ( i === len - 1 && len > 1) {
           this.router.navigate([this.meanService.windows[i - 1].href, {  }]);
+          this.meanService.setCurRoute( this.meanService.windows[i - 1] );
         } else {
           this.router.navigate(['/']);
         }

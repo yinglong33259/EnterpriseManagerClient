@@ -12,48 +12,93 @@
     <!--</li>-->
   <!--</ul>-->
 <!--</div>-->
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="ant-advanced-search-form">
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" style="width: 80%">
 
-  <div nz-row [nzGutter]="24">
+  <div nz-row [nzGutter]="24" >
     <div nz-col [nzSpan]="8" >
       <nz-form-item nzFlex>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">Name</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input formControlName="name" id="name">
+          <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">The input is not valid Name!</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="8" >
+      <nz-form-item nzFlex>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sex">Sex</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input formControlName="sex" id="sex">
+          <nz-form-explain *ngIf="validateForm.get('sex').dirty && validateForm.get('sex').errors">The input is not valid Sex!</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="8" >
+      <nz-form-item nzFlex>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">E-mail</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24">
           <input nz-input formControlName="email" id="email">
           <nz-form-explain *ngIf="validateForm.get('email').dirty && validateForm.get('email').errors">The input is not valid E-mail!</nz-form-explain>
         </nz-form-control>
       </nz-form-item>
     </div>
-  </div>ss
+  </div>
 
 </form>
 
-<ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <label for="dateOfBirth">Date of birth</label>
-        <div class="input-group">
-          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button">
-              <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
-  </div>
-</ng-template>
+
+<nz-table #basicTable
+          [nzData]="displayData"
+          nzScroll = "200px"
+          nzShowPagination="true"
+          nzPageSize="10"
+          nzSize="small">
+  <thead (nzSortChange)="sort($event)" >
+  <tr style="height: 20px">
+    <th *ngFor="let header of columnDefs" nzShowSort nzSortKey="header.field">
+      {{header.headerName}}
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of displayData">
+    <td>{{user.name}}</td>
+    <td>{{user.age}}</td>
+    <td>{{user.sex}}</td>
+    <td>{{user.tel}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.addr}}</td>
+  </tr>
+  </tbody>
+</nz-table>
 
 
-<app-cus-table [rowData]="users" [tableName]="'UserTable'" [totalRowCount]="totalRowCount"></app-cus-table>
+<!--<ng-template #content let-c="close" let-d="dismiss">-->
+  <!--<div class="modal-header">-->
+    <!--<h4 class="modal-title" id="modal-basic-title">Profile update</h4>-->
+    <!--<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">-->
+      <!--<span aria-hidden="true">&times;</span>-->
+    <!--</button>-->
+  <!--</div>-->
+  <!--<div class="modal-body">-->
+    <!--<form>-->
+      <!--<div class="form-group">-->
+        <!--<label for="dateOfBirth">Date of birth</label>-->
+        <!--<div class="input-group">-->
+          <!--<input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">-->
+          <!--<div class="input-group-append">-->
+            <!--<button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button">-->
+              <!--<img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>-->
+            <!--</button>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</form>-->
+  <!--</div>-->
+  <!--<div class="modal-footer">-->
+    <!--<button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>-->
+  <!--</div>-->
+<!--</ng-template>-->
+
+
+<!--<app-cus-table [rowData]="users" [tableName]="'UserTable'" [totalRowCount]="totalRowCount"></app-cus-table>-->

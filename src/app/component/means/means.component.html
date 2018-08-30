@@ -1,8 +1,8 @@
-<ul class="means">
-  <li  *ngFor="let mean of means">
-    <a class="topMean" (click)="clickTopMean()">{{mean.title}}</a>
-    <ul class="subMean">
-      <li *ngFor="let subMean of mean.submenus ">
+<ul nz-menu [nzMode]="'inline'" >
+  <li nz-submenu  *ngFor="let mean of means">
+    <span style="margin: 0" title><i class="anticon anticon-appstore"></i><a title (click)="clickTopMean()">{{mean.title}}</a></span>
+    <ul >
+      <li nz-menu-item *ngFor="let subMean of mean.submenus ">
         <a routerLink="/{{subMean.href}}"
            (click)="add2window(subMean)" >{{subMean.title}}</a>
       </li>

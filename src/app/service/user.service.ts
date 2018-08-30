@@ -35,5 +35,15 @@ export class UserService {
     );
   }
 
+  findAll(): Observable<User[]> {
+    this.messageService.add('UserService: fetched users');
+    let paramsStr = JSON.stringify( this.paramsObj );
+    return this.http.post<User[]>(
+      this.baseUrl + 'findAll',
+      null,
+      {
+      }
+    );
+  }
 
 }

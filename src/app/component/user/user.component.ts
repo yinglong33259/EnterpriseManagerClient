@@ -4,11 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../entity/User';
 import {UserService} from '../../service/user.service';
 import {MeanService} from '../../service/mean.service';
-import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-
-export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion';
-}
+import * as tablesConfig from '../../config/tables.json';
 
 @Component({
   selector: 'app-user',
@@ -16,35 +12,50 @@ export interface DialogData {
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  validateForm: FormGroup;
   users: User[];
+  displayData: User[];
   means: string[];
-  totalRowCount: number;
-  closeResult: string;
+  columnDefs = [];
+  validateForm: FormGroup;
+  tableName = "UserTable";
 
   emailFormControl = new FormControl('', []);
 
   constructor(
     private userService: UserService,
     private meanService: MeanService,
-    private modalService: NgbModal,
     private fb: FormBuilder
   ) {
   }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.findAll();
+    this.columnDefs = tablesConfig[this.tableName];
     this.validateForm = this.fb.group({
       email: [null, [Validators.email]],
+      sex: [null, [Validators.maxLength(2)]],
+      name: [null, [Validators.maxLength(20)]],
     });
   }
 
-  ngOnDestroy() {
+  sortName = null;
+  sortValue = null;
+  sort (sort: { key: string, value: string }): void {
+    this.sortName = sort.key;
+    this.sortValue = sort.value;
+    this.search();
+  }
 
+  search(): void {
+    /** sort data **/
+    if (this.sortName && this.sortValue) {
+      this.displayData = this.users.sort((a, b) => (this.sortValue === 'ascend') ? (a[ this.sortName ] > b[ this.sortName ]   ? 1 : -1) : (b[ this.sortName ] > a[ this.sortName ] ? 1 : -1));
+    } else {
+      this.displayData = this.users;
+    }
   }
 
   getUsers(): void {
-    // this.users = this.userService.getUsers() ;
     this.userService.getUsers()
       .subscribe(users => {
         this.users = users;
@@ -52,31 +63,12 @@ export class UserComponent implements OnInit {
       });
   }
 
-
-  onSelect(user: User): void {
-    console.log(user.name);
-  }
-
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  submitForm() {
-    console.log("submit");
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
+  findAll(): void {
+    this.userService.findAll()
+      .subscribe(users => {
+        this.users = users;
+        this.displayData = [ ...this.users ];
+      });
   }
 
 }

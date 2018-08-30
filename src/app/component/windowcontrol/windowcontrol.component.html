@@ -1,6 +1,11 @@
 <div class="widows">
-  <div class="oneWindowButton" *ngFor="let one of meanService.windows">
-    <div class="closeTitle"  routerLink="/{{one.href}}">{{one.title}}
+  <div *ngFor="let one of meanService.windows"
+       [class.oneWindowButtonIn]="meanService.curRoute.href === one.href"
+       [class.oneWindowButton]="meanService.curRoute.href != one.href">
+    <div class="closeTitle"
+         routerLink="/{{one.href}}"
+          (click)="enterRouter(one)" >
+      {{one.title}}
     </div>
     <div class="closeBtn" (click)="closeWindow(one)">x</div>
   </div>

@@ -9,6 +9,8 @@ import * as meansConfig from '../config/means.json';
 })
 export class MeanService {
 
+  public curRoute = {};
+
   public windows = [];
 
   public currWindow = null;
@@ -25,8 +27,26 @@ export class MeanService {
   //   return this.http.get<Mean[]>(url);
   // }
 
+  setCurRoute(route: object): void {
+    this.curRoute = route;
+  }
+
   getMeans(): object[] {
     return this.meanJsonObj['means'];
+  }
+
+  getMeanByHref( desHred: string ): {} {
+    let allmean = this.meanJsonObj['means'];
+    for (let i = 0; i < allmean.length; i++ ) {
+
+      for (let j = 0; j < allmean[i]['submenus'].length; j++ ) {
+        if( allmean[i]['submenus'][j]['href'] === desHred ) {
+            return allmean[i]['submenus'][j];
+        }
+      }
+
+    }
+    return null;
   }
 
 }

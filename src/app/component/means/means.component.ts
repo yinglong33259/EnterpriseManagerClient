@@ -45,7 +45,8 @@ export class MeansComponent implements OnInit {
   }
 
   add2window(mean: object): void {
-    this.meanService.currWindow = mean;
+    this.meanService.curRoute = mean;
+    this.meanService.setCurRoute( mean );
     for (let i = 0 ; i < this.meanService.windows.length; i++) {
       if (this.meanService.windows[i]['title'] === mean['title'] ) {
         return;

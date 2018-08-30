@@ -3,13 +3,30 @@
   height: 8%;
   padding-top: 6px;
 }
+.oneWindowButtonIn{
+  width: auto;
+  float: left;
+  padding: 0 0 0 5px;
+  margin-left: 3px;
+  background: darkseagreen;
+  cursor: pointer;
+  border-radius: 2px;
+  -moz-user-select: none; -khtml-user-select: none; user-select: none;
+}
+
 .oneWindowButton{
   width: auto;
   float: left;
   padding: 0 0 0 5px;
   margin-left: 3px;
-  background: #CCE198;
+  background: #f0f0f0;
   cursor: pointer;
+  border-radius: 2px;
+  -moz-user-select: none; -khtml-user-select: none; user-select: none;
+}
+.oneWindowButton:hover{
+  background: darkseagreen;
+  transition: all 0.4s ease-out;
 }
 .closeTitle{
   float: left;
@@ -22,10 +39,10 @@
   font-family: Helvetica, STHeiti;
   _font-family: '\u9ed1\u4f53', 'Book Antiqua', Palatino;
   font-size: 5px;
-  border-radius: 5px;
-  background: #7DAF34;
-  color: #FFF;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+  border-radius: 24px;
+  background: #f0f0f0;
+  color: gray;
+  //box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
   -moz-transition: linear .06s;
   -webkit-transition: linear .06s;
   transition: linear .06s;
