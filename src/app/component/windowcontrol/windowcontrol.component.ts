@@ -24,7 +24,7 @@ export class WindowcontrolComponent implements OnInit {
     }
   }
 
-  enterRouter(route: mean): void {
+  enterRouter(route: object): void {
     this.meanService.setCurRoute( route ) ;
   }
 
