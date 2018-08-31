@@ -35,6 +35,22 @@ export class UserService {
     );
   }
 
+  findByCondition(param: object): Observable<User[]> {
+    this.messageService.add('UserService: findByCondition users');
+    let params = [];
+    params.push(param);
+    let paramsStr = JSON.stringify( params );
+    return this.http.post<User[]>(
+      this.baseUrl + 'getUser',
+      null,
+      {
+        params: {
+          params: paramsStr
+        }
+      }
+    );
+  }
+
   findAll(): Observable<User[]> {
     this.messageService.add('UserService: fetched users');
     let paramsStr = JSON.stringify( this.paramsObj );

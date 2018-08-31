@@ -19,6 +19,8 @@ export class UserComponent implements OnInit {
   validateForm: FormGroup;
   tableName = "UserTable";
 
+  queryEntity = {};
+
   emailFormControl = new FormControl('', []);
 
   constructor(
@@ -36,6 +38,12 @@ export class UserComponent implements OnInit {
       sex: [null, [Validators.maxLength(2)]],
       name: [null, [Validators.maxLength(20)]],
     });
+
+    this.addUserForm = this.fb.group({
+      name: [null, [Validators.maxLength(20)]],
+      age: [null, [Validators.pattern( "^100$|^(\d|[1-9]\d)$" )]],
+    });
+
   }
 
   sortName = null;
@@ -69,5 +77,39 @@ export class UserComponent implements OnInit {
         this.displayData = [ ...this.users ];
       });
   }
+
+
+  resetQueryParam(): void {
+    this.queryEntity = {};
+  }
+
+  query(): void {
+    this.userService.findByCondition(this.queryEntity)
+      .subscribe(users => {
+        this.users = users;
+        this.displayData = [ ...this.users ];
+      });
+  }
+
+  //modal start
+  isVisible = false;
+  isOkLoading = false;
+
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    this.isOkLoading = true;
+    window.setTimeout(() => {
+      this.isVisible = false;
+      this.isOkLoading = false;
+    }, 3000);
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
+
 
 }
