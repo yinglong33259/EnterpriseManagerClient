@@ -8,13 +8,13 @@ import * as tablesConfig from '../../../config/tables.json';
 })
 export class CusTableComponent implements OnInit {
 
-  private gridApi;
-  private gridColumnApi;
+  public gridApi;
+  public gridColumnApi;
   @Input() tableName: string;
   @Input() rowData: any[];
   @Input() totalRowCount: number;
-  private pageSize = 10;
-  private page = 1;
+  public pageSize = 10;
+  public page = 1;
 
   columnDefs = [];
 
