@@ -17,6 +17,7 @@ export class UserComponent implements OnInit {
   means: string[];
   columnDefs = [];
   validateForm: FormGroup;
+  addUserForm: FormGroup;
   tableName = "UserTable";
 
   queryEntity = {};

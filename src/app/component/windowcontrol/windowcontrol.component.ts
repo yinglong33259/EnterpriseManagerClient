@@ -12,8 +12,8 @@ import {Router} from '@angular/router';
 export class WindowcontrolComponent implements OnInit {
 
   constructor(
-    private meanService: MeanService,
-    private router: Router
+    public meanService: MeanService,
+    public router: Router
   ) { }
 
   ngOnInit() {

@@ -27,7 +27,7 @@ import { trigger, state, style, animate, transition} from '@angular/animations';
 
 export class MeansComponent implements OnInit {
 
-  private means: object[];
+  public means: object[];
 
   constructor(
     private meanService: MeanService
