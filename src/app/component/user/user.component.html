@@ -15,17 +15,17 @@
 <div style="width: 99%;height: auto;background: #f0f0f0;padding: 10px 10px 10px 10px;margin: 2px 2px 10px 2px">
 
     <div nz-row [nzGutter]="24" style="margin-bottom: 5px">
-      <div nz-col [nzSpan]="6" >
+      <div nz-col [nzSpan]="7" >
           <label>Name:</label>
           <input type="text" nz-input class="nzInputQuery" placeholder="Name" [(ngModel)]="queryEntity.name">
       </div>
 
-      <div nz-col [nzSpan]="6" >
+      <div nz-col [nzSpan]="7" >
           <label>Age:</label>
           <input type="text" nz-input class="nzInputQuery" placeholder="Age" [(ngModel)]="queryEntity.age">
       </div>
 
-      <div nz-col [nzSpan]="6" >
+      <div nz-col [nzSpan]="7" >
           <label>Address:</label>
           <input type="text" nz-input class="nzInputQuery" placeholder="Address" [(ngModel)]="queryEntity.sex">
       </div>
@@ -48,20 +48,49 @@
 
 </div>
 
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Add User" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkLoading]="isOkLoading">
-  <form nz-form [formGroup]="addUserForm" (ngSubmit)="submitForm()">
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add User" (nzOnCancel)="handleCancel()" (nzOnOk)="saveUser()" [nzOkLoading]="isOkLoading">
+  <form nz-form [formGroup]="addUserForm" >
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Name</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
-        <input nz-input formControlName="name" id="name">
+        <input nz-input formControlName="name" [(ngModel)]="addEntity.name">
         <nz-form-explain *ngIf="addUserForm.get('name').dirty && addUserForm.get('name').errors">The input is not valid Name!</nz-form-explain>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="age" nzRequired>Age</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
-        <input nz-input type="age" id="age" formControlName="age" >
+        <input nz-input type="text" formControlName="age" [(ngModel)]="addEntity.age">
         <nz-form-explain *ngIf="addUserForm.get('age').dirty && addUserForm.get('age').errors">Please input your age!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sex" nzRequired>Sex</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select [(ngModel)]="sex" formControlName="sex" [(ngModel)]="addEntity.sex">
+          <nz-option *ngFor="let option of sexDict" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="tel" nzRequired>Tel</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input type="text" formControlName="tel" [(ngModel)]="addEntity.tel">
+        <nz-form-explain *ngIf="addUserForm.get('tel').dirty && addUserForm.get('tel').errors">Please input your Phone number!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email" nzRequired>Email</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input type="email" formControlName="email" [(ngModel)]="addEntity.email">
+        <nz-form-explain *ngIf="addUserForm.get('email').dirty && addUserForm.get('email').errors">Please input right email!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="addr" nzRequired>Addr</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input type="addr" formControlName="addr" [(ngModel)]="addEntity.addr">
+        <nz-form-explain *ngIf="addUserForm.get('addr').dirty && addUserForm.get('addr').errors">Please input right email!</nz-form-explain>
       </nz-form-control>
     </nz-form-item>
   </form>

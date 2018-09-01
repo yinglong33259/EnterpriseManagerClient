@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
 
 import {User} from '../entity/User';
-import {USERS} from '../mock/mock-users';
 import { Observable, of } from 'rxjs';
 import {MessageService} from './message.service';
+import * as appConfig from '../config/app.json';
+import {HttpUtilService} from './http-util.service';
+import {Result} from '../entity/Result';
 
 @Injectable({
   providedIn: 'root'
@@ -13,53 +13,33 @@ import {MessageService} from './message.service';
 
 export class UserService {
 
-  private baseUrl = '/app/service/userService/';
+  private baseUrl = appConfig['baseUrl'] + '/userService/';
   private paramsObj = [{name: '波多野结衣'}];
 
   constructor(
-    private http: HttpClient,
+    private http: HttpUtilService,
     private messageService: MessageService
   ) { }
 
-  getUsers(): Observable<User[]> {
+  getUsers(): Observable<Result> {
     this.messageService.add('UserService: fetched users');
-    let paramsStr = JSON.stringify( this.paramsObj );
-    return this.http.post<User[]>(
-      this.baseUrl + 'getUser',
-      null,
-      {
-        params: {
-          params: paramsStr
-        }
-      }
-    );
+    return this.http.sendRequest('userService', 'findAll', null);
   }
 
-  findByCondition(param: object): Observable<User[]> {
+  findByCondition(param: object): Observable<Result> {
     this.messageService.add('UserService: findByCondition users');
-    let params = [];
-    params.push(param);
-    let paramsStr = JSON.stringify( params );
-    return this.http.post<User[]>(
-      this.baseUrl + 'getUser',
-      null,
-      {
-        params: {
-          params: paramsStr
-        }
-      }
-    );
+    return this.http.sendRequest('userService', 'findByCondition', param);
   }
 
-  findAll(): Observable<User[]> {
+  findAll(): Observable<Result> {
     this.messageService.add('UserService: fetched users');
-    let paramsStr = JSON.stringify( this.paramsObj );
-    return this.http.post<User[]>(
-      this.baseUrl + 'findAll',
-      null,
-      {
-      }
-    );
+    return this.http.sendRequest('userService', 'findAll');
   }
+
+  addUser(user: User): Observable<Result> {
+    this.messageService.add('UserService: add user');
+    return this.http.sendRequest('userService', 'addUser', user);
+  }
+
 
 }

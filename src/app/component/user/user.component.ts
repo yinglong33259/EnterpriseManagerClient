@@ -5,6 +5,7 @@ import {User} from '../../entity/User';
 import {UserService} from '../../service/user.service';
 import {MeanService} from '../../service/mean.service';
 import * as tablesConfig from '../../config/tables.json';
+import * as DICT from '../../config/dict.json';
 
 @Component({
   selector: 'app-user',
@@ -12,6 +13,9 @@ import * as tablesConfig from '../../config/tables.json';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+
+  sexDict = DICT["SEX"];
+
   users: User[];
   displayData: User[];
   means: string[];
@@ -20,16 +24,14 @@ export class UserComponent implements OnInit {
   addUserForm: FormGroup;
   tableName = "UserTable";
 
-  queryEntity = {};
-
-  emailFormControl = new FormControl('', []);
+  queryEntity = new User();
+  addEntity = new User();
 
   constructor(
     private userService: UserService,
     private meanService: MeanService,
     private fb: FormBuilder
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     this.findAll();
@@ -42,7 +44,11 @@ export class UserComponent implements OnInit {
 
     this.addUserForm = this.fb.group({
       name: [null, [Validators.maxLength(20)]],
-      age: [null, [Validators.pattern( "^100$|^(\d|[1-9]\d)$" )]],
+      age: [null, [Validators.pattern( '^100$|^([1-9]\\d{1,3})$')]],
+      sex: [null, []],
+      tel: [null, []],
+      email: [null, [Validators.email]],
+      addr: [null, []]
     });
 
   }
@@ -66,28 +72,28 @@ export class UserComponent implements OnInit {
 
   getUsers(): void {
     this.userService.getUsers()
-      .subscribe(users => {
-        this.users = users;
+      .subscribe(result => {
+        this.users = result.data;
       });
   }
 
   findAll(): void {
     this.userService.findAll()
-      .subscribe(users => {
-        this.users = users;
+      .subscribe(result => {
+        this.users = result.data;
         this.displayData = [ ...this.users ];
       });
   }
 
 
   resetQueryParam(): void {
-    this.queryEntity = {};
+    this.queryEntity = new User();
   }
 
   query(): void {
     this.userService.findByCondition(this.queryEntity)
-      .subscribe(users => {
-        this.users = users;
+      .subscribe(result => {
+        this.users = result.data;
         this.displayData = [ ...this.users ];
       });
   }
@@ -100,12 +106,12 @@ export class UserComponent implements OnInit {
     this.isVisible = true;
   }
 
-  handleOk(): void {
+  saveUser(): void {
     this.isOkLoading = true;
-    window.setTimeout(() => {
-      this.isVisible = false;
-      this.isOkLoading = false;
-    }, 3000);
+    this.userService.addUser( this.addEntity ).subscribe(result => {
+      this.isOkLoading = result.data;
+      this.findAll();
+    });
   }
 
   handleCancel(): void {
