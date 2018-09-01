@@ -13,7 +13,7 @@ import {MessageService} from './message.service';
 
 export class UserService {
 
-  private baseUrl = 'http://127.0.0.1:8080/service/userService/';
+  private baseUrl = '/app/service/userService/';
   private paramsObj = [{name: '波多野结衣'}];
 
   constructor(
