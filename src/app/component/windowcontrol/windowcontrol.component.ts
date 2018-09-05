@@ -6,8 +6,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-windowcontrol',
   templateUrl: './windowcontrol.component.html',
-  styleUrls: ['./windowcontrol.component.css'],
-  providers: [AppRoutingCache]
+  styleUrls: ['./windowcontrol.component.css']
 })
 export class WindowcontrolComponent implements OnInit {
 
@@ -31,14 +30,26 @@ export class WindowcontrolComponent implements OnInit {
   closeWindow(mean: object): void {
     let index = 0;
     let len = this.meanService.windows.length;
+
+    if ( this.meanService.curRoute['href'] !== mean['href'] ) {
+      for (let i = 0; i < len; i++) {
+        if (this.meanService.windows[i].href === mean['href'] ) {
+          this.meanService.windows.splice(i, 1);
+          AppRoutingCache.deleteRouteSnapshot( mean['href'] );
+          return ;
+        }
+      }
+    }
     for (let i = 0; i < len; i++) {
       if (this.meanService.windows[i].href === mean['href'] ) {
-        index = i;
         this.meanService.windows.splice(i, 1);
         if ( i === 0 && len > 1 ) {
           this.router.navigate([this.meanService.windows[i].href, {  }]);
           this.meanService.setCurRoute( this.meanService.windows[i] );
         } else if ( i === len - 1 && len > 1) {
+          this.router.navigate([this.meanService.windows[i - 1].href, {  }]);
+          this.meanService.setCurRoute( this.meanService.windows[i - 1] );
+        } else if ( i > 0 && i < len - 1  ) {
           this.router.navigate([this.meanService.windows[i - 1].href, {  }]);
           this.meanService.setCurRoute( this.meanService.windows[i - 1] );
         } else {

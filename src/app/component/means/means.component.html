@@ -1,6 +1,11 @@
 <ul nz-menu [nzMode]="'inline'" >
   <li nz-submenu  *ngFor="let mean of means">
-    <span style="margin: 0" title><i class="anticon anticon-appstore"></i><a title (click)="clickTopMean()">{{mean.title}}</a></span>
+    <span style="margin: 0" title >
+      <i class="anticon anticon-user" *ngIf="mean.enTitle === 'User Mgmt' " ></i>
+      <i class="anticon anticon-skin" *ngIf="mean.enTitle === 'Table Style' " ></i>
+      <i class="anticon anticon-bulb" *ngIf="mean.enTitle === 'Funny Diy' "></i>
+      <a title (click)="clickTopMean()">{{mean.title}}</a>
+    </span>
     <ul >
       <li nz-menu-item *ngFor="let subMean of mean.submenus ">
         <a routerLink="/{{subMean.href}}"
