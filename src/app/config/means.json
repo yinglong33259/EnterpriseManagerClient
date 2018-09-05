@@ -39,6 +39,20 @@
           "href": "clientPagenation"
         }
       ]
+    },
+    {
+      "title": "趣味功能",
+      "enTitle": "Funny Diy",
+      "titleShort": "Funny Diy",
+      "ngShow": "menu.home",
+      "submenus": [
+        {
+          "title": "图转点",
+          "enTitle": "Image To  Spot",
+          "titleShort": "imageToSpot",
+          "href": "imageToSpot"
+        }
+      ]
     }
   ]
 
