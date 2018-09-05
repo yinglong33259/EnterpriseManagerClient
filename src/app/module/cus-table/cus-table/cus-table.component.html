@@ -16,24 +16,33 @@
   >
 
   </ag-grid-angular>
-  <div style="height: 50px;width: 100%;background: white;">
-    <mat-form-field style="width: 50px">
-      <mat-select [(value)]="pageSize" (valueChange)="pageSizeChange()">
-        <mat-option  value="10">10</mat-option>
-        <mat-option  value="20">20</mat-option>
-        <mat-option  value="50">50</mat-option>
-        <mat-option  value="100">100</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <ngb-pagination style="float: right"
-      [collectionSize]="totalRowCount"
-      [maxSize]="5"
-      [ellipses]="true"
-      [(page)]="page"
-      [pageSize]="pageSize"
-      [boundaryLinks]="true">
+  <!--<div style="height: 50px;width: 100%;background: white;">-->
+    <!--<mat-form-field style="width: 50px">-->
+      <!--<mat-select [(value)]="pageSize" (valueChange)="pageSizeChange()">-->
+        <!--<mat-option  value="10">10</mat-option>-->
+        <!--<mat-option  value="20">20</mat-option>-->
+        <!--<mat-option  value="50">50</mat-option>-->
+        <!--<mat-option  value="100">100</mat-option>-->
+      <!--</mat-select>-->
+    <!--</mat-form-field>-->
+    <!--<ngb-pagination style="float: right"-->
+      <!--[collectionSize]="totalRowCount"-->
+      <!--[maxSize]="5"-->
+      <!--[ellipses]="true"-->
+      <!--[(page)]="page"-->
+      <!--[pageSize]="pageSize"-->
+      <!--[boundaryLinks]="true">-->
 
-    </ngb-pagination>
+    <!--</ngb-pagination>-->
+  <!--</div>-->
+  <div style="float: right;margin-top: 2px;">
+    <nz-pagination [(nzPageIndex)]="page"
+                   [(nzPageSize)]="pageSize"
+                   [nzTotal]="totalRowCount"
+                   nzShowSizeChanger
+                   (nzPageIndexChange) = "gotoPage()"
+                   (nzPageSizeChange) = "pageSizeChange()"
+                   >
+    </nz-pagination>
   </div>
-
 </div>

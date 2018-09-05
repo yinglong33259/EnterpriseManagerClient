@@ -15,6 +15,7 @@ export class CusTableComponent implements OnInit {
   @Input() totalRowCount: number;
   public pageSize = 10;
   public page = 1;
+  nzPageSizeOptions: number[] = [10, 20, 30, 40];
 
   columnDefs = [];
 
@@ -36,12 +37,12 @@ export class CusTableComponent implements OnInit {
     });
   }
 
-  gotoPage(pagenum: number) {
+  gotoPage() {
     this.gridApi.paginationGoToPage(this.page - 1);
   }
 
   pageSizeChange() {
-    console.log("Page Size Change");
+    this.gridApi.paginationSetPageSize(this.pageSize);
   }
 
 }
