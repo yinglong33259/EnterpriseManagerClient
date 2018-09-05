@@ -5,6 +5,7 @@ import {PageNotFoundComponentComponent} from './component/page-not-found-compone
 import {MessagesComponent} from './component/messages/messages.component';
 import {ClientPagenationComponent} from './component/client-pagenation/client-pagenation.component';
 import {ServerPagenationComponent} from './component/server-pagenation/server-pagenation.component';
+import {ImagediyComponent} from './component/imagediy/imagediy.component';
 
 const routes: Routes = [
   { path: 'users',
@@ -22,6 +23,10 @@ const routes: Routes = [
   { path: 'clientPagenation',
     component: ClientPagenationComponent ,
     data: { keep: true }
+  },
+  { path: 'imageToSpot',
+    component: ImagediyComponent ,
+    data: { keep: false }
   },
   { path: '**', component: PageNotFoundComponentComponent }
 ];

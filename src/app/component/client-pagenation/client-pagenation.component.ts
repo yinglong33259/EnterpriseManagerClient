@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../service/user.service';
-import {MeanService} from '../../service/mean.service';
 import {User} from '../../entity/User';
 
 @Component({
   selector: 'app-client-pagenation',
   templateUrl: './client-pagenation.component.html',
-  styleUrls: ['./client-pagenation.component.css']
+  styleUrls: ['./client-pagenation.component.css'],
 })
 export class ClientPagenationComponent implements OnInit {
 
@@ -65,8 +64,8 @@ export class ClientPagenationComponent implements OnInit {
   getUsers(): void {
     // this.users = this.userService.getUsers() ;
     this.userService.getUsers()
-      .subscribe(users => {
-        this.users = users;
+      .subscribe(result => {
+        this.users = result.data;
       });
   }
 

@@ -10,7 +10,7 @@ import * as DICT from '../../config/dict.json';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
 
@@ -77,10 +77,12 @@ export class UserComponent implements OnInit {
       });
   }
 
+  totalRowCount: number;
   findAll(): void {
     this.userService.findAll()
       .subscribe(result => {
         this.users = result.data;
+        this.totalRowCount = this.users.length;
         this.displayData = [ ...this.users ];
       });
   }
@@ -94,28 +96,36 @@ export class UserComponent implements OnInit {
     this.userService.findByCondition(this.queryEntity)
       .subscribe(result => {
         this.users = result.data;
+        this.totalRowCount = this.users.length;
         this.displayData = [ ...this.users ];
       });
   }
 
-  //modal start
-  isVisible = false;
-  isOkLoading = false;
+  isVisible: boolean = false;
+  isOkLoading: boolean = false;
 
   showModal(): void {
     this.isVisible = true;
+    this.addEntity = new User();
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
   }
 
   saveUser(): void {
     this.isOkLoading = true;
     this.userService.addUser( this.addEntity ).subscribe(result => {
-      this.isOkLoading = result.data;
+      console.log(  result.data );
+      this.isOkLoading = ! result.data;
+      this.isVisible = false;
       this.findAll();
     });
   }
 
-  handleCancel(): void {
-    this.isVisible = false;
+  //table
+  currentPageDataChange($event: Array<User>): void {
+    this.displayData = $event;
   }
 
 
