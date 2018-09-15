@@ -10,13 +10,13 @@
           "title": "用户管理",
           "enTitle": "User Management",
           "titleShort": "User Management",
-          "href": "users"
+          "href": "mgmt/users"
         },
         {
           "title": "钱包管理",
           "enTitle": "Wallet Management",
           "titleShort": "Wallet Management",
-          "href": "wallet"
+          "href": "mgmt/wallet"
         }
       ]
     },
@@ -30,13 +30,13 @@
           "title": "后台分页",
           "enTitle": "Server Pagenation",
           "titleShort": "Server Pagenation",
-          "href": "serverPagenation"
+          "href": "mgmt/serverPagenation"
         },
         {
           "title": "前台分页",
           "enTitle": "Client Pagenation",
           "titleShort": "Client Pagenation",
-          "href": "clientPagenation"
+          "href": "mgmt/clientPagenation"
         }
       ]
     },
@@ -50,7 +50,7 @@
           "title": "图转点",
           "enTitle": "Image To  Spot",
           "titleShort": "imageToSpot",
-          "href": "imageToSpot"
+          "href": "mgmt/imageToSpot"
         }
       ]
     }

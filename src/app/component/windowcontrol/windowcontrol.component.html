@@ -3,7 +3,7 @@
        [class.oneWindowButtonIn]="meanService.curRoute.href === one.href"
        [class.oneWindowButton]="meanService.curRoute.href != one.href">
     <div class="closeTitle"
-         routerLink="/{{one.href}}"
+         routerLink="/{{one.href}}" routerLinkActive="mgmt"
           (click)="enterRouter(one)" >
       {{one.title}}
     </div>

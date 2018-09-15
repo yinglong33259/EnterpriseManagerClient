@@ -53,7 +53,7 @@ export class WindowcontrolComponent implements OnInit {
           this.router.navigate([this.meanService.windows[i - 1].href, {  }]);
           this.meanService.setCurRoute( this.meanService.windows[i - 1] );
         } else {
-          this.router.navigate(['/']);
+          this.router.navigate(['/mgmt']);
         }
         break;
       }
