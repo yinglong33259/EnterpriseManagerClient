@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if ( !this.cookieService.get('authToken') ) {
-      this.router.navigate(['/mgmt']);
+      this.router.navigate(['/login']);
     } else {
       this.router.navigate(['/mgmt']);
     }

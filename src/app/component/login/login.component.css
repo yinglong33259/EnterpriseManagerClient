@@ -1,0 +1,23 @@
+.box{
+  height: 100%;
+  width: 100%;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.login-form {
+  max-width: 450px;
+  background: #f0f0f0;
+  padding: 50px 50px 50px 50px;
+  border-radius: 5px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}

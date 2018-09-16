@@ -16,15 +16,14 @@ import {RouteReuseStrategy} from '@angular/router';
 import {AppRoutingCache} from './AppRoutingCache';
 
 import {MgmtSystemModule} from './module/mgmt-system/mgmt-system.module';
-import { LoginComponent } from './component/login/login.component';
 import {AgGridModule} from 'ag-grid-angular';
+import {LoginModule} from './module/login/login.module';
 
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +32,8 @@ registerLocaleData(zh);
     HttpClientModule,
     AgGridModule.withComponents([]),
     BrowserAnimationsModule,
-    MgmtSystemModule
+    MgmtSystemModule,
+    LoginModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: AppRoutingCache },

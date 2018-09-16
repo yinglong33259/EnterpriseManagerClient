@@ -12,7 +12,7 @@ export class HttpUtilService {
   private baseUrl = appConfig['baseUrl'] ;
   constructor(private http: HttpClient) { }
 
-  sendRequest(service: string, func: string, ... parameters: object[]): Observable<Result> {
+  sendRequest(service: string, func: string, ... parameters: any[]): Observable<Result> {
 
     let paramArray = [];
     parameters.forEach(function(currentValue) {
