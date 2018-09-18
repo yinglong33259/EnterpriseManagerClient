@@ -58,7 +58,8 @@ export class WindowcontrolComponent implements OnInit {
         break;
       }
     }
-    AppRoutingCache.deleteRouteSnapshot(mean['href']);
+    const url = mean['href'].split('/');
+    AppRoutingCache.deleteRouteSnapshot(url[url.length - 1]);
   }
 
 }

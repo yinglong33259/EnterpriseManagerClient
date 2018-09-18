@@ -4,7 +4,6 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class AppRoutingCache implements RouteReuseStrategy {
   public static handlers: { [key: string]: DetachedRouteHandle } = {};
-  public static deleteCachedRouteSnapshotPath: string;
   public static deleteNotCachedStoredRouteSnapshotPath: string;
   // 表示对路由允许复用
   public shouldDetach(route: ActivatedRouteSnapshot): boolean {

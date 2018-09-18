@@ -8,6 +8,8 @@ import {
 import {HttpUtilService} from '../../service/http-util.service';
 import {Result} from '../../entity/Result';
 import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +22,12 @@ export class LoginComponent implements OnInit {
   userName: string;
   password: string;
 
+  constructor(private fb: FormBuilder,
+              private http: HttpUtilService,
+              public router: Router,
+              private cookieService: CookieService,
+  ) { }
+
   submitForm(): void {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[ i ].markAsDirty();
@@ -27,14 +35,13 @@ export class LoginComponent implements OnInit {
     }
     this.login()
       .subscribe(result => {
+        this.cookieService.set('tokenId', result.data );
+        this.router.navigate(['/mgmt']);
       });
   }
 
-  constructor(private fb: FormBuilder,
-              private http: HttpUtilService
-  ) { }
-
   ngOnInit(): void {
+    console.log('enter login page');
     this.validateForm = this.fb.group({
       userName: [ null, [ Validators.required ] ],
       password: [ null, [ Validators.required ] ],
@@ -43,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(): Observable<Result> {
-    return this.http.sendRequest('userService', 'login', this.userName, this.password);
+    return this.http.sendRequest2('loginService/login', this.userName, this.password);
   }
 
 }
