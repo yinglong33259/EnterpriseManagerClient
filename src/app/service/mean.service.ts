@@ -13,8 +13,6 @@ export class MeanService {
 
   public windows = [];
 
-  public currWindow = null;
-
   public meanJsonObj = meansConfig;
 
   constructor(

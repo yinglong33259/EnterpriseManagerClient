@@ -23,6 +23,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouteReuseStrategy} from '@angular/router';
 import {AppRoutingCache} from '../../AppRoutingCache';
 import {HttpUtilService} from '../../service/http-util.service';
+import {MatProgressBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,6 @@ import {HttpUtilService} from '../../service/http-util.service';
     MgmtRoutingModule,
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: AppRoutingCache },
     HttpUtilService,
     MeanService,
     MessageService,

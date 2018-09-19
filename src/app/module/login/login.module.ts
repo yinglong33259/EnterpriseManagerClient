@@ -6,6 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatProgressBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -16,7 +17,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserAnimationsModule,
     NgZorroAntdModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressBarModule,
   ],
   providers: [
     HttpUtilService,

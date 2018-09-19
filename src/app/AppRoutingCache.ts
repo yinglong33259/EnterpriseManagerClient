@@ -15,7 +15,7 @@ export class AppRoutingCache implements RouteReuseStrategy {
   }
   // 当路由离开时会触发。按path作为key存储路由快照&组件当前实例对象
   public store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
-    if (AppRoutingCache.deleteNotCachedStoredRouteSnapshotPath !== route.routeConfig.path ){
+    if (AppRoutingCache.deleteNotCachedStoredRouteSnapshotPath !== route.routeConfig.path ) {
       AppRoutingCache.handlers[route.routeConfig.path] = handle;
     }
     AppRoutingCache.deleteNotCachedStoredRouteSnapshotPath = null;
@@ -40,6 +40,12 @@ export class AppRoutingCache implements RouteReuseStrategy {
     AppRoutingCache.deleteNotCachedStoredRouteSnapshotPath = name;
     if (AppRoutingCache.handlers[name]) {
       delete AppRoutingCache.handlers[name];
+    }
+  }
+  // 删除所有路由快照
+  public static deleteAllRouteSnapshot(): void {
+    for( let key in AppRoutingCache.handlers ) {
+      delete AppRoutingCache.handlers[key];
     }
   }
 

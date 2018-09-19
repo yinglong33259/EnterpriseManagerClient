@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   validateForm: FormGroup;
   userName: string;
   password: string;
-
+  loginError = false;
+  isLoading = false;
   constructor(private fb: FormBuilder,
               private http: HttpUtilService,
               public router: Router,
@@ -33,9 +34,21 @@ export class LoginComponent implements OnInit {
       this.validateForm.controls[ i ].markAsDirty();
       this.validateForm.controls[ i ].updateValueAndValidity();
     }
+    if ( this.userName == null || this.userName === '' ) {
+      return ;
+    }
+    if ( this.password == null || this.password === '' ) {
+      return ;
+    }
+    this.isLoading = true;
     this.login()
       .subscribe(result => {
-        this.cookieService.set('tokenId', result.data );
+        this.isLoading = false;
+        if ( result['errorCode'] > 0 ) {
+          this.loginError = true;
+          return;
+        }
+        this.cookieService.set('tokenId', result['data'] );
         this.router.navigate(['/mgmt']);
       });
   }

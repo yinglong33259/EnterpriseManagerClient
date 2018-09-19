@@ -25,3 +25,7 @@ a,button,input,div,li { outline: none; }
   width: 200px;
   margin-left: 4px;
 }
+
+.mat-progress-bar-fill::after{
+  background: green !important;
+}

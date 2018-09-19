@@ -7,11 +7,25 @@
   justify-content: center;
   align-items: center;
 }
+.secBox{
+  width: auto;height: auto;
+  padding: 2px 2px 2px 2px;
+  border-radius: 5px;
+  background: #f0f0f0;
+}
+.processBar{
+  width: 450px;
+  height: 4px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.mat-progress-bar-fill::after{
+  background: green !important;
+}
 .login-form {
   max-width: 450px;
   background: #f0f0f0;
   padding: 50px 50px 50px 50px;
-  border-radius: 5px;
 }
 
 .login-form-forgot {
@@ -20,4 +34,20 @@
 
 .login-form-button {
   width: 100%;
+}
+
+.auth{
+  top: 90%;
+  left: 85%;
+  color: white;
+  position: absolute;
+}
+.logo{
+  top: 20px;
+  left: 20px;
+  width: 265px;
+  height: 90px;
+  margin: 0 auto;
+  color: white;
+  position: absolute;
 }
