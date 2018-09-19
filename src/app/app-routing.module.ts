@@ -8,6 +8,8 @@ import {MessagesComponent} from './component/messages/messages.component';
 import {ServerPagenationComponent} from './component/server-pagenation/server-pagenation.component';
 import {ClientPagenationComponent} from './component/client-pagenation/client-pagenation.component';
 import {ImagediyComponent} from './component/imagediy/imagediy.component';
+import {EchartsExampleOneComponent} from './component/echarts-example-one/echarts-example-one.component';
+import {EchartsExampleTwoComponent} from './component/echarts-example-two/echarts-example-two.component';
 
 const routes: Routes = [
   { path: 'mgmt',
@@ -31,6 +33,14 @@ const routes: Routes = [
       },
       { path: 'imageToSpot',
         component: ImagediyComponent ,
+        data: { keep: false }
+      },
+      { path: 'example1',
+        component: EchartsExampleOneComponent ,
+        data: { keep: false }
+      },
+      { path: 'example2',
+        component: EchartsExampleTwoComponent ,
         data: { keep: false }
       },
       { path: '**', component: PageNotFoundComponentComponent, outlet: 'mgmt', }

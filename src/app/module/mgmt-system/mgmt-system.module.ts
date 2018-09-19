@@ -20,10 +20,10 @@ import {CusTableModule} from '../cus-table/cus-table.module';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RouteReuseStrategy} from '@angular/router';
-import {AppRoutingCache} from '../../AppRoutingCache';
 import {HttpUtilService} from '../../service/http-util.service';
-import {MatProgressBarModule} from '@angular/material';
+import {NgxEchartsModule} from 'ngx-echarts';
+import {EchartsExampleOneComponent} from '../../component/echarts-example-one/echarts-example-one.component';
+import {EchartsExampleTwoComponent} from '../../component/echarts-example-two/echarts-example-two.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,8 @@ import {MatProgressBarModule} from '@angular/material';
     ClientPagenationComponent,
     ImagediyComponent,
     MgmtSystemComponent,
+    EchartsExampleOneComponent,
+    EchartsExampleTwoComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import {MatProgressBarModule} from '@angular/material';
     CusTableModule,
     NgZorroAntdModule,
     MgmtRoutingModule,
+    NgxEchartsModule
   ],
   providers: [
     HttpUtilService,

@@ -53,6 +53,26 @@
           "href": "mgmt/imageToSpot"
         }
       ]
+    },
+    {
+      "title": "Echarts Demos",
+      "enTitle": "Echarts Demos",
+      "titleShort": "Echarts Demos",
+      "ngShow": "menu.home",
+      "submenus": [
+        {
+          "title": "K Line",
+          "enTitle": "K Line",
+          "titleShort": "example1",
+          "href": "mgmt/example1"
+        },
+        {
+          "title": "Scatter",
+          "enTitle": "Scatter",
+          "titleShort": "example2",
+          "href": "mgmt/example2"
+        }
+      ]
     }
   ]
 
